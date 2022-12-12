@@ -1,0 +1,38 @@
+{% from 'qc_dropdown.html.jinja2' import qc_dropdown %}
+
+<div class="card">
+    <h4 class="card-header">Allokation</h4>
+    <div class="card-body">
+        <h5 style="margin-right: 0.5em; margin-top: 0.35em; float: left">Einstellungen: </h5>
+        {{ qc_dropdown("overview-allocation-qc-dropdown") }}
+    </div>
+</div>
+<br><br>
+<!-- Allocation plots -->
+<div class="scrollable-view" style="clear: both; height: 900px; position: relative">
+    {% for component in components %}
+        <div style="display: inline-block;width: 340px;">
+            <h3>{{ component }}</h3>
+
+            <div id="allocation-dropdown-{{ component|lower }}">
+            </div>
+
+            <div style="position: absolute; top: 80px">
+                <!-- Plot -->
+                <div id="plots-allocation-{{ component|lower }}" class="plot-parent"></div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div style="display: inline-block;width: 300px; position: absolute; right: 0">
+        <h3>Kombiniert</h3>
+
+        <div id="hidden-allocation-dropdown">
+        </div>
+
+        <div style="position: absolute; top: 80px">
+            <!-- Plot -->
+            <div id="convoluted-plots-allocation" class="plot-parent"></div>
+        </div>
+    </div>
+</div>

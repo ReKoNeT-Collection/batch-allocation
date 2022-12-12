@@ -1,0 +1,6 @@
+flask~=2.0.1  # webservice
+werkzeug~=2.0.1  # webservice
+pandas~=1.3.3  # data frames
+scipy~=1.7.1  # scientific calculations for distributions
+yappi~=1.3.2  # profiler
+tqdm~=4.62.3  # progress bar

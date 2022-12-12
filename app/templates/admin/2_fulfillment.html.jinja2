@@ -1,0 +1,14 @@
+<!-- Fulfillment distribution plots -->
+{% for component in components %}
+    <div style="clear: both;">
+        <h3>{{ component }}</h3>
+
+        <div id="fulfillment-dropdown-{{ component|lower }}">
+        </div>
+
+        <div style="clear: both;">
+            <!-- Plot -->
+            <div id="plots-fulfillment-{{ component|lower }}" class="plot-parent autosize"></div>
+        </div>
+    </div>
+{% endfor %}

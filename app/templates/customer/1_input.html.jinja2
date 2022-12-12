@@ -1,0 +1,55 @@
+{% from 'qc_dropdown.html.jinja2' import qc_dropdown %}
+
+<!-- File selector and distribution plots -->
+{% for component in components %}
+    <div style="clear: both;">
+        <h3>{{ component }}</h3>
+
+        <!-- File selector -->
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="file-input-{{ component|lower }}"
+                   data-value="{{ component }}" onchange="onFileSelected(this)">
+            <label class="custom-file-label" for="file-input" id="file-text-{{ component|lower }}">Aktuellen Datenauszug
+                auswählen...</label>
+        </div>
+
+        <!--<br>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="progress-{{ component|lower }}" style="width: 0%; visibility:hidden"></div>
+    </div>-->
+
+        <br><br>
+
+        <div id="input-dropdown-{{ component|lower }}">
+        </div>
+
+        <div style="clear: both;">
+            <!-- Navigation tabs for selecting a specific type -->
+            <!--
+            <ul class="nav nav-pills" id="selected-distribution" style="visibility: hidden;">
+            </ul>
+            -->
+
+            <!-- Plot -->
+            <div id="plots-{{ component|lower }}" class="plot-parent autosize"></div>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="card">
+    <h4 class="card-header">Daten speichern</h4>
+    <div class="card-body">
+        <button id="data-upload-button" type="button" class="btn btn-success" onclick="uploadData()" disabled style="float:left">
+            <span id="data-upload-button-spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none"></span>
+            Ausgewählten Datensatz hochladen
+        </button>
+        <p id="upload-alert" style="display: none; float: left; margin-left: 1em; margin-top: 0.35em"></p>
+        <br>
+        <br>
+        {{ qc_dropdown("qc-dropdown") }}
+    </div>
+</div>
+<br>
+<br>
+<br>
+

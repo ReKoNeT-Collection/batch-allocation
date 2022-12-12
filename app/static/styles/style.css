@@ -1,0 +1,59 @@
+.custom-file-input ~ .custom-file-label::after {
+    content: "Datei öffnen";
+}
+
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1200px;
+}
+
+.scrollable-view {
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+div .dropdown {
+    float: left;
+    margin-right: 2px;
+}
+
+div .allocation-matrix-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+div .allocation-matrix {
+    width: 45%;
+    min-width: 400px;
+    margin-bottom: 2em;
+}
+
+div .allocation-matrix-plots {
+    border: 1px solid rgb(198, 198, 198);
+}
+
+.svg-container {
+    margin: auto;
+}
+
+.loss-title {
+    height: 5em;
+}
+
+.row-inner {
+    background-color: #f1f1f1;
+    border: 1px solid #dbdbdb;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-size: 1rem;
+}
+
+.row-outer {
+    background-color: #fdfdfd;
+    border: 1px solid #dbdbdb;
+    border-radius: .2rem;
+    font-size: 1.2rem;
+}

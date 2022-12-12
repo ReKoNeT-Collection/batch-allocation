@@ -1,0 +1,15 @@
+{% macro qc_dropdown(id) -%}
+<div class="dropdown" id="{{ id }}" style="float: left">
+    <a role="button" href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false" data-name="Qualitätsregelstrategie">
+        Qualitätsregelstrategie
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdown">
+        <a class="dropdown-item active" data-value="">Konventionelle Montage</a>
+        <a class="dropdown-item" data-value="selective_assembly">Selektive Montage</a>
+        <a class="dropdown-item" data-value="individual_assembly">Prüfende Montage</a>
+        <a class="dropdown-item" data-value="individual_assembly_greedy">Individuelle Greedy Montage</a>
+        <a class="dropdown-item" data-value="ascending_descending">Ascending-Descending</a>
+    </div>
+</div>
+{%- endmacro %}

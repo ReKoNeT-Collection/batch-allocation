@@ -1,0 +1,42 @@
+{% from 'qc_dropdown.html.jinja2' import qc_dropdown %}
+
+<div class="card">
+    <h4 class="card-header">Zahlungsbereitschaft</h4>
+    <div class="card-body">
+        <!-- Base dropdowns -->
+        <div id="price-calculation-dropdown-base">
+        </div>
+    </div>
+</div>
+<br><br>
+<!-- Batch matching plots -->
+<div style="clear: both;">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="loss-title">
+                    <h4 class="price-calculation-name-comparison-default">{{ components[1] }}</h4>
+                    <h4> Optimal/Wunsch</h4>
+                </div>
+                <p id="plots-comparison-optimal-default-avg">∅ Verlust=</p>
+                <div id="plots-comparison-optimal-default" class="plot-parent"></div>
+            </div>
+            <div class="col">
+                <div class="loss-title">
+                    <h4 class="price-calculation-name-comparison-default">{{ components[1] }}</h4>
+                    <h4> Standardcharge</h4>
+                </div>
+                <p id="plots-comparison-standard-default-avg">∅ Verlust=</p>
+                <div id="plots-comparison-standard-default" class="plot-parent"></div>
+            </div>
+            <div class="col">
+                <div class="loss-title">
+                    <h4 class="price-calculation-name-comparison-default">{{ components[1] }}</h4>
+                    <h4> Allokation</h4>
+                </div>
+                <p id="plots-comparison-allocated-default-avg">∅ Verlust=</p>
+                <div id="plots-comparison-allocated-default" class="plot-parent"></div>
+            </div>
+        </div>
+    </div>
+</div>

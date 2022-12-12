@@ -1,0 +1,159 @@
+{% extends "base.html.jinja2" %}
+
+{% block vars %}
+    <script type="text/javascript">
+        /**
+         * Current configuration type.
+         */
+        const currentConfig = {{ currentConfig|tojson }};
+        /**
+         * Name of the current configuration type.
+         */
+        const currentConfigName = {{ currentConfigName|tojson }};
+        /**
+         * Lower and upper tolerances for all features
+         */
+        const tolerances = {{ tolerances|tojson }};
+        /**
+         * Names of all test points, which are included in the tolerances dictionary.
+         */
+        const testPointNames = {{ testPointNames|tojson }};
+        /**
+         * Characteristic values for all components.
+         * @type {Object.<string, *>[]}
+         */
+        const componentsCharacteristics = {{ componentsCharacteristics|tojson }};
+        /**
+         * Names of all components.
+         * @type {string[]}
+         */
+        const components = {{ components|tojson }};
+        /**
+         * Functional (linear regression) model.
+         */
+        const n_testPoints = {{ n_testPoints|tojson }};
+        /**
+         * Expected standard distributions for every component and test point.
+         */
+        const standardDistributions = {{ standardDistributions|tojson }};
+        /**
+         * For every test point, a x and y array.
+         */
+        const qualityLossClasses = {{ qualityLossClasses|tojson }};
+        /**
+         * Mean of every characteristic value and test point.
+         */
+        const means = {{ means|tojson }};
+    </script>
+{% endblock %}
+
+{% block additional_scripts %}
+    <script src="{{ url_for('static',filename='js/data.js') }}"></script>
+    <!-- Plot logic -->
+    <script src="{{ url_for('static',filename='js/plots.js') }}"></script>
+    <!-- Menu logic -->
+    <script src="{{ url_for('static',filename='js/menus.js') }}"></script>
+    <!-- Event handler -->
+    <script src="{{ url_for('static',filename='js/admin/input.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/admin/fulfillment.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/admin/allocation.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/admin/batch-allocation.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/admin/allocation-complete.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/admin/losses1.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/admin/losses2.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <!-- LOGO and Title -->
+    <div style="display: flex; align-items: flex-end;">
+        <div style="float: left;">
+            <a href="/" aria-label="home">
+                <img src="{{ url_for('static',filename='img/logo.png') }}" height="100px" alt="logo">
+            </a>
+        </div>
+        <div style="float: left; ; margin-left: 20px;">
+            <h2 style="margin-bottom: -2px; font-weight: bolder;"><i>{{ currentConfigName }} Dashboard</i></h2>
+        </div>
+    </div>
+
+    <br><br><br>
+
+
+    <ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="input-tab" data-toggle="tab" href="#input" role="tab" aria-controls="input"
+               aria-selected="true">1. Eingabedaten</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" id="fulfillment-tab" data-toggle="tab" href="#fulfillment" role="tab"
+               aria-controls="fulfillment" aria-selected="false">2. Funktionserfüllung</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" id="allocation-tab" data-toggle="tab" href="#allocation" role="tab"
+               aria-controls="allocation" aria-selected="false">3. Allokation</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" id="batch-allocation-tab" data-toggle="tab" href="#batch-allocation" role="tab"
+               aria-controls="batch-allocation" aria-selected="false">4a. Batch Allokation</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" id="klt-allocation-tab" data-toggle="tab" href="#klt-allocation" role="tab"
+               aria-controls="klt-allocation" aria-selected="false">4b. KLT Allokation</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" id="allocation-complete-tab" data-toggle="tab" href="#allocation-complete" role="tab"
+               aria-controls="allocation-complete" aria-selected="false">5. Allokation</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" id="price-calculation-tab" data-toggle="tab" href="#price-calculation" role="tab"
+               aria-controls="price-calculation" aria-selected="false">6. ZB #1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" id="price-calculation-conv-tab" data-toggle="tab" href="#price-calculation-conv" role="tab"
+               aria-controls="price-calculation-conv" aria-selected="false">7. ZB #2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" id="price-calculation-losses-tab" data-toggle="tab" href="#price-calculation-losses" role="tab"
+               aria-controls="price-calculation-losses" aria-selected="false">8. ZB #3</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" id="losses-tab" data-toggle="tab" href="#losses" role="tab"
+               aria-controls="price-calculation-conv" aria-selected="false">9. Verluste</a>
+        </li>
+    </ul>
+    <br><br>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane show active" id="input" role="tabpanel" aria-labelledby="input-tab">
+            {% include "admin/1_input.html.jinja2" %}
+        </div>
+        <div class="tab-pane" id="fulfillment" role="tabpanel" aria-labelledby="fulfillment-tab">
+            {% include "admin/2_fulfillment.html.jinja2" %}
+        </div>
+        <div class="tab-pane" id="allocation" role="tabpanel" aria-labelledby="allocation-tab">
+            {% include "admin/3_allocation.html.jinja2" %}
+        </div>
+        <div class="tab-pane" id="batch-allocation" role="tabpanel" aria-labelledby="batch-allocation-tab">
+            {% include "admin/4a_allocation-batches.html.jinja2" %}
+        </div>
+        <div class="tab-pane" id="klt-allocation" role="tabpanel" aria-labelledby="klt-allocation-tab">
+            {% include "admin/4b_allocation-klts.html.jinja2" %}
+        </div>
+        <div class="tab-pane" id="allocation-complete" role="tabpanel" aria-labelledby="allocation-complete-tab">
+            {% include "admin/5_allocation-complete.html.jinja2" %}
+        </div>
+        <div class="tab-pane" id="price-calculation" role="tabpanel" aria-labelledby="price-calculation-tab">
+            {% include "admin/6_price-calculation.html.jinja2" %}
+        </div>
+        <div class="tab-pane" id="price-calculation-conv" role="tabpanel" aria-labelledby="price-calculation-conv-tab">
+            {% include "admin/7_price-calculation-conv.html.jinja2" %}
+        </div>
+        <div class="tab-pane" id="price-calculation-losses" role="tabpanel" aria-labelledby="price-calculation-losses-tab">
+            {% include "admin/8_price-calculation-losses.html.jinja2" %}
+        </div>
+        <div class="tab-pane" id="losses" role="tabpanel" aria-labelledby="losses-tab">
+            {% include "admin/9_losses.html.jinja2" %}
+        </div>
+    </div>
+
+{% endblock %}

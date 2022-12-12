@@ -1,0 +1,55 @@
+{
+  "Name": "TESTING",
+  "Components": [
+    {
+        "name": "A",
+        "characteristics": [
+            "A1",
+            "A2"
+        ]
+    },
+    {
+        "name": "B",
+        "characteristics": [
+            "B1",
+            "B2"
+        ]
+    }
+  ],
+  "Customer": {
+    "Components": ["A"]
+  },
+  "Supplier": {
+    "Components": ["B"]
+  },
+  "Bins": 31,
+  "FunctionalModel": {
+    "A1": [0.5],
+    "A2": [-0.05],
+    "B1": [-0.1],
+    "B2": [500]
+  },
+  "Tolerances": {
+    "A1": [10.0, 20.0],
+    "A2": [100.0, 200.0],
+    "B1": [50.0, 100.0],
+    "B2": [0.01, 0.02],
+    "F1": [-10.0, 10.0],
+    "WeightedF": [-10.0, 10.0]
+  },
+  "TestPoints": ["F1", "WeightedF"],
+  "MeanValues": {
+    "A1": 15.0,
+    "A2": 150.0,
+    "B1": 75.0,
+    "B2": 0.015,
+    "F1": 0.0,
+    "WeightedF": 0.0
+  },
+  "TestPointWeights": [
+    1.0
+  ],
+  "QualityLoss": {
+    "InefficiencyCosts": 10.0
+  }
+}

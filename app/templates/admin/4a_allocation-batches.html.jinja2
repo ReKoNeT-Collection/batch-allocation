@@ -1,0 +1,35 @@
+{% from 'qc_dropdown.html.jinja2' import qc_dropdown %}
+
+<div class="card">
+    <h4 class="card-header">Batch Allokation</h4>
+    <div class="card-body">
+        <!-- Settings dropdowns -->
+        <h5 style="margin-right: 0.5em; margin-top: 0.35em; float: left">Einstellungen: </h5>
+        <div class="dropdown" id="allocation-method-dropdown" style="float: left">
+            <a role="button" href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false" data-name="Allokationsmethode">
+                Allokationsmethode
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown">
+                <a class="dropdown-item active" data-value="mean">Mittelwert</a>
+                <a class="dropdown-item" data-value="mean_std">Mittelwert+Std</a>
+                <a class="dropdown-item" data-value="cpk">Cpk</a>
+                <a class="dropdown-item" data-value="qualityloss">Qualitätsverlust</a>
+            </div>
+        </div>
+        {{ qc_dropdown("allocation-qc-dropdown") }}
+        <br><br>
+        <!-- Calculation allocation buttons -->
+        <button type="button" class="btn btn-success" onclick="onCalculateAllocationClicked('batch')"
+                style="float: left; margin-right: 2px">
+            <span id="allocation-calc-spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                  style="display: none;"></span>
+            Beste Allokation berechnen
+        </button>
+    </div>
+</div>
+<br><br>
+
+<!-- Allocation plots -->
+<div id="batch-allocation-plots" class="allocation-matrix-container">
+</div>

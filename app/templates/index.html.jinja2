@@ -1,0 +1,14 @@
+{% extends "base.html.jinja2" %}
+
+{% block content %}
+
+<div style="text-align:center;">
+<img src="{{ url_for('static',filename='img/logo.png') }}" height="100px" alt="logo">
+<br><br>
+<h3>Willkommen! Bitte wählen Sie das Produkt aus.</h3><br><br>
+{% for config_type, config_name in zip(config_types, config_names) %}
+    <a class="btn btn-primary" href="/dashboard/{{ config_type }}" role="button">{{ config_name }}</a>
+{% endfor %}
+</div>
+
+{% endblock %}

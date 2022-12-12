@@ -1,0 +1,89 @@
+{% extends "base.html.jinja2" %}
+
+{% block vars %}
+    <script type="text/javascript">
+        /**
+         * Current configuration type.
+         */
+        const currentConfig = {{ currentConfig|tojson }};
+        /**
+         * Name of the current configuration type.
+         */
+        const currentConfigName = {{ currentConfigName|tojson }};
+        /**
+         * Names of all components.
+         * @type {string[]}
+         */
+        const components = {{ components|tojson }};
+        /**
+         * Lower and upper tolerances for all features
+         */
+        const tolerances = {{ tolerances|tojson }};
+        /**
+         * Names of all test points, which are included in the tolerances dictionary.
+         */
+        const testPointNames = {{ testPointNames|tojson }};
+        /**
+         * Functional (linear regression) model.
+         */
+        const n_testPoints = {{ n_testPoints|tojson }};
+        /**
+         * Characteristic values for all components.
+         * @type {Object.<string, *>[]}
+         */
+        const componentsCharacteristics = {{ componentsCharacteristics|tojson }};
+        /**
+         * Expected standard distributions for every component and test point.
+         */
+        const standardDistributions = {{ standardDistributions|tojson }};
+    </script>
+{% endblock %}
+{% block additional_scripts %}
+    <script src="{{ url_for('static',filename='js/data.js') }}"></script>
+    <!-- Plot logic -->
+    <script src="{{ url_for('static',filename='js/plots.js') }}"></script>
+    <!-- Menu logic -->
+    <script src="{{ url_for('static',filename='js/menus.js') }}"></script>
+    <!-- Event handler -->
+    <script src="{{ url_for('static',filename='js/supplier/input.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/supplier/losses.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <!-- LOGO and Title -->
+    <div style="display: flex; align-items: flex-end;">
+        <div style="float: left;">
+            <a href="/" aria-label="home">
+                <img src="{{ url_for('static',filename='img/logo.png') }}" height="100px" alt="logo">
+            </a>
+        </div>
+        <div style="float: left; ; margin-left: 20px;">
+            <h2 style="margin-bottom: -2px; font-weight: bolder;"><i>{{ currentConfigName }} Dashboard</i></h2>
+        </div>
+    </div>
+
+    <br><br><br>
+
+
+    <ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="input-tab" data-toggle="tab" href="#input" role="tab" aria-controls="input"
+               aria-selected="true">1. Eingabedaten</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" id="price-calculation-tab" data-toggle="tab" href="#price-calculation" role="tab"
+               aria-controls="price-calculation" aria-selected="false">2. Zahlungsbereitschaft</a>
+        </li>
+    </ul>
+    <br><br>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane show active" id="input" role="tabpanel" aria-labelledby="input-tab">
+            {% include "supplier/1_input.html.jinja2" %}
+        </div>
+        <div class="tab-pane" id="price-calculation" role="tabpanel" aria-labelledby="price-calculation-tab">
+            {% include "supplier/2_price-calculation.html.jinja2" %}
+        </div>
+    </div>
+
+{% endblock %}

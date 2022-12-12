@@ -1,0 +1,66 @@
+{% from 'qc_dropdown.html.jinja2' import qc_dropdown %}
+
+<div class="card">
+    <h4 class="card-header">Zahlungsbereitschaft (gefaltete Verteilungen)</h4>
+    <div class="card-body">
+        <!-- Base dropdowns -->
+        <div id="price-calculation-base-conv">
+        </div>
+        <div id="price-calculation-dropdown-base-conv">
+        </div>
+        <br><br>
+        <!-- Comparison dropdowns -->
+        <div id="price-calculation-comparison-conv">
+        </div>
+        <div id="price-calculation-dropdown-comparison-conv">
+        </div>
+        <br><br>
+        <!-- Einstellungen -->
+        <h5 style="margin-right: 0.5em; margin-top: 0.35em; float: left">Einstellungen: </h5>
+        {{ qc_dropdown("price-calculation-qc-dropdown-conv") }}
+        <br><br>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="price-calculation-autoallocate-conv" checked>
+            <label class="form-check-label" for="price-calculation-autoallocate-conv">Automatische Allokation</label>
+        </div>
+    </div>
+</div>
+<br><br>
+<!-- Batch matching plots -->
+<div style="clear: both;">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="loss-title">
+                    <h4 class="price-calculation-name-base-conv">{{ components[0] }}</h4>
+                </div>
+                <p>&ZeroWidthSpace;</p>
+                <div id="plots-comparison-base-conv" class="plot-parent"></div>
+            </div>
+            <div class="col">
+                <div class="loss-title">
+                    <h4 class="price-calculation-name-comparison-conv">{{ components[1] }}</h4>
+                    <h4> Optimal/Wunsch</h4>
+                </div>
+                <p id="plots-comparison-optimal-conv-avg">∅ Verlust=</p>
+                <div id="plots-comparison-optimal-conv" class="plot-parent"></div>
+            </div>
+            <div class="col">
+                <div class="loss-title">
+                    <h4 class="price-calculation-name-comparison-conv">{{ components[1] }}</h4>
+                    <h4> Standardcharge</h4>
+                </div>
+                <p id="plots-comparison-standard-conv-avg">∅ Verlust=</p>
+                <div id="plots-comparison-standard-conv" class="plot-parent"></div>
+            </div>
+            <div class="col">
+                <div class="loss-title">
+                    <h4 class="price-calculation-name-comparison-conv">{{ components[1] }}</h4>
+                    <h4> Allokation</h4>
+                </div>
+                <p id="plots-comparison-allocated-conv-avg">∅ Verlust=</p>
+                <div id="plots-comparison-allocated-conv" class="plot-parent"></div>
+            </div>
+        </div>
+    </div>
+</div>

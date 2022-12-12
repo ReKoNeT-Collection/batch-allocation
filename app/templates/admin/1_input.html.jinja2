@@ -1,0 +1,35 @@
+<!-- File selector and distribution plots -->
+{% for component in components %}
+    <div style="clear: both;">
+        <h3>{{ component }}</h3>
+
+        <!-- File selector -->
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="file-input-{{ component|lower }}"
+                   data-value="{{ component }}" onchange="onFileSelected(this)">
+            <label class="custom-file-label" for="file-input" id="file-text-{{ component|lower }}">Aktuellen Datenauszug
+                auswählen...</label>
+        </div>
+
+        <!--<br>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="progress-{{ component|lower }}" style="width: 0%; visibility:hidden"></div>
+    </div>-->
+
+        <br><br>
+
+        <div id="input-dropdown-{{ component|lower }}">
+        </div>
+
+        <div style="clear: both;">
+            <!-- Navigation tabs for selecting a specific type -->
+            <!--
+            <ul class="nav nav-pills" id="selected-distribution" style="visibility: hidden;">
+            </ul>
+            -->
+
+            <!-- Plot -->
+            <div id="plots-{{ component|lower }}" class="plot-parent autosize"></div>
+        </div>
+    </div>
+{% endfor %}

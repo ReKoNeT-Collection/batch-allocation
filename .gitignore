@@ -1,0 +1,8 @@
+__pycache__
+.pytest_cache
+.vscode/settings.json
+*.egg-info
+.idea
+instance/saved_data/dummy/*
+venv
+rekonet_env

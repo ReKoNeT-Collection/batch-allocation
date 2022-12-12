@@ -1,0 +1,36 @@
+{% from 'qc_dropdown.html.jinja2' import qc_dropdown %}
+
+<div class="card">
+    <h4 class="card-header">Verluste</h4>
+    <div class="card-body">
+        <!-- Batch dropdowns -->
+        <h5 style="margin-right: 0.5em; margin-top: 0.35em; float: left">{{ components[0] }}</h5>
+        <div id="losses-dropdown-base">
+        </div>
+        <br><br>
+        <!-- KLT dropdowns -->
+        <h5 style="margin-right: 0.5em; margin-top: 0.35em; float: left">{{ components[1] }}</h5>
+        <div id="losses-dropdown-comparison">
+        </div>
+        <br><br>
+        <!-- Einstellungen -->
+        <h5 style="margin-right: 0.5em; margin-top: 0.35em; float: left">Einstellungen: </h5>
+        {{ qc_dropdown("losses-qc-dropdown") }}
+        <br><br>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="losses-autoallocate" checked>
+            <label class="form-check-label" for="losses-autoallocate">Automatische Allokation</label>
+        </div>
+    </div>
+</div>
+<br><br>
+
+<div style="clear: both;">
+    <!-- Plot -->
+    <h4>Verlustfunktion</h4>
+    <div id="plots-losses" class="plot-parent autosize"></div>
+    <h4>Faltung</h4>
+    <div id="plots-losses-conv" class="plot-parent autosize"></div>
+    <h4>Verluste * Wahrscheinlichkeiten</h4>
+    <div id="plots-losses-mult" class="plot-parent autosize"></div>
+</div>
